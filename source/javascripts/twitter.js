@@ -7,15 +7,15 @@ function prettyDate(time) {
     return "<span>&infin;</span>"; // because IE date parsing isn't fun.
   }
   var say = {
-    just_now:    " now",
+    just_now:    " hetkel",
     minute_ago:  "1m",
     minutes_ago: "m",
     hour_ago:    "1h",
     hours_ago:   "h",
-    yesterday:   "1d",
-    days_ago:    "d",
-    last_week:   "1w",
-    weeks_ago:   "w"
+    yesterday:   "1p",
+    days_ago:    "p",
+    last_week:   "1n",
+    weeks_ago:   "n"
   };
 
   var current_date = new Date(),
@@ -72,7 +72,7 @@ function getTwitterFeed(user, count, replies) {
   $.ajax({
       url: "http://api.twitter.com/1/statuses/user_timeline/" + user + ".json?trim_user=true&count=" + (count + 20) + "&include_entities=1&exclude_replies=" + (replies ? "0" : "1") + "&callback=?"
     , type: 'jsonp'
-    , error: function (err) { $('#tweets li.loading').addClass('error').text("Twitter's busted"); }
+    , error: function (err) { $('#tweets li.loading').addClass('error').text("Twitter on kutu"); }
     , success: function(data) { showTwitterFeed(data.slice(0, count), user); }
   })
 }
