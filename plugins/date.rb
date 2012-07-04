@@ -1,3 +1,8 @@
+require 'i18n'
+
+I18n.load_path += Dir[File.dirname(__FILE__) + '/../locale/' + '*.{rb,yml}']
+I18n.default_locale = :et
+
 module Octopress
   module Date
 
@@ -36,7 +41,7 @@ module Octopress
       if format.nil? || format.empty? || format == "ordinal"
         date_formatted = ordinalize(date)
       else
-        date_formatted = date.strftime(format)
+        date_formatted = I18n.l(date, :format => format)
         date_formatted.gsub!(/%o/, ordinal(date.strftime('%e').to_i))
       end
       date_formatted
